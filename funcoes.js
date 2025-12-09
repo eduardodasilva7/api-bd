@@ -1,0 +1,117 @@
+//created table employees
+export async function criarTabelaFuncionarios(conexao) {
+  await conexao.schema.createTable("funcionarios", table =>{
+    table.increments("codFunc").unsigned().notNullable()
+    table.string("nome")
+    table.string("email")
+    table.date("dataNascimento")
+    table.date("dataInicio")
+    table.integer("cpf")
+  })
+
+  console.log("Tabela funcionario criada.")
+}
+
+    //inserir funcionarios
+    export async function inserirFunc(conexao, inserir) {
+      await conexao("funcionarios").insert(inserir)
+      console.log("Funcionario inserido")
+    }
+
+    //consultar funcionarios
+    export async function consultarFunc(conexao, filtro){
+      const dado = await conexao.select().from("funcionarios").where(filtro)
+
+      console.log(dado)
+    }
+
+    //alterar funcionarios
+    export async function alterarFunc(conexao, ondeAlt, oQueAlt){
+      await conexao("funcionarios").where(ondeAlt).update(oQueAlt)
+      console.log("Alteração de funcionario realizada")
+
+    }
+
+    // excluir o funcionario
+    export async function excluirFunc(conexao, filtro){
+      await conexao("funcionarios").where(filtro).del()
+      console.log("Funcionario delatado do sistema")
+    }
+
+//created table clients
+export async function criarTabelaClientes(conexao){
+  await conexao.schema.createTable("clientes", table =>{
+    table.increments("codCli").unsigned().notNullable()
+    table.string("nome")
+    table.string("lograduro")
+    table.integer("numero")
+    table.integer("cpf")
+  })
+
+  console.log("tabela cliente criada.")
+}
+
+//created table suppliers
+export async function criarTabelaFornecedores(conexao){
+  await conexao.schema.createTable("fornecedores", table=>{
+    table.increments("codFornce").unsigned().notNullable()
+    table.string("nome")
+    table.string("logradouro")
+    table.integer("contato")
+    table.integer("cnpj")
+  })
+
+  console.log("tabela fornecedores criada")
+
+}
+
+//created table products
+export async function criarTabelaProduto(conexao) {
+  await conexao.schema.createTable("produtos", table => {
+    table.increments("codProd").unsigned().notNullable()
+    table.string("nome")
+    table.float("price")
+    table.date("date")
+    table.text("bio")
+    table.integer("codFornce").unsigned()
+    table.foreign("codFornce").references("codFornce").inTable("fornecedores")
+  })
+
+  console.log("Tabela produtos criada.")
+}
+
+//created table user
+export async function criarTabelaUsuarios(conexao) {
+  await conexao.schema.createTable("usuarios", table =>{
+    table.increments("codUsu").unsigned().notNullable()
+    table.string("nome")
+    table.string("email")
+    table.date("dataNascimento")
+    table.integer("cpf")
+    table.integer("codFunc").unsigned()
+    table.foreign("codFunc").references("codFunc").inTable("funcionarios")
+    })
+
+  console.log("Tabela usuário criada.")
+}
+
+//created table sales
+export async function criarTabelaVendas(conexao){
+  await conexao.schema.createTable("vendas", table =>{
+    table.increments("codVenda").unsigned().notNullable()
+    table.string("nome")
+    table.string("vendedor")
+    table.string("cliente")
+    table.string("forncedor")
+    table.integer("price")
+    table.integer("codProd").unsigned().notNullable()
+    table.integer("codFornce").unsigned().notNullable()
+    table.integer("codCli").unsigned().notNullable()
+    table.foreign("codProd").references('codProd').inTable("produtos")
+    table.foreign("codFornce").references("codFornce").inTable("fornecedores")
+    table.foreign("codCli").references("codCli").inTable("clientes")
+  })
+
+  console.log("tabela vendas criada.")
+
+}
