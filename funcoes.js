@@ -51,6 +51,31 @@ export async function criarTabelaClientes(conexao){
   console.log("tabela cliente criada.")
 }
 
+    //inserir funcionarios
+    export async function inserirCliente(conexao, inserir){
+      await conexao("clientes").insert(inserir)
+      console.log("Cliente inserido com sucesso.")
+    }
+
+    //consultar funcionario 
+    export async function consultarCliente(conexao, filtro){
+      const dado = await conexao.select().from("clientes").where(filtro)
+      console.log(dado)
+    }
+
+    //alterar clientes
+    export async function alterarCliente(conexao, ondeAlt, oQueAlt){
+      await conexao("clientes").where(ondeAlt).update(oQueAlt)
+      console.log("Cliente alterado com sucesso.")
+    }
+
+    //deletar cliente
+    export async function excluirCliente(conexao, filtro){
+      await conexao("clientes").where(filtro).del()
+      console.log("Cliente deletado com sucesso.")
+    }
+
+
 //created table suppliers
 export async function criarTabelaFornecedores(conexao){
   await conexao.schema.createTable("fornecedores", table=>{
