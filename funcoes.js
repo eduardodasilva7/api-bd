@@ -51,13 +51,13 @@ export async function criarTabelaClientes(conexao){
   console.log("tabela cliente criada.")
 }
 
-    //inserir funcionarios
+    //inserir clientes
     export async function inserirCliente(conexao, inserir){
       await conexao("clientes").insert(inserir)
       console.log("Cliente inserido com sucesso.")
     }
 
-    //consultar funcionario 
+    //consultar clientes
     export async function consultarCliente(conexao, filtro){
       const dado = await conexao.select().from("clientes").where(filtro)
       console.log(dado)
@@ -75,7 +75,6 @@ export async function criarTabelaClientes(conexao){
       console.log("Cliente deletado com sucesso.")
     }
 
-
 //created table suppliers
 export async function criarTabelaFornecedores(conexao){
   await conexao.schema.createTable("fornecedores", table=>{
@@ -86,9 +85,32 @@ export async function criarTabelaFornecedores(conexao){
     table.integer("cnpj")
   })
 
-  console.log("tabela fornecedores criada")
-
+  console.log("tabela fornecedores criada") 
 }
+
+    //inserir fornecedores
+    export async function inserirForncedores(conexao, inserir){
+      await conexao("fornecedores").insert(inserir)
+      console.log("fornecedor inserido")
+    }
+
+    //consultar forncedores
+    export async function consultarForncedores(conexao, filtro){
+      const dado = await conexao.select().from("fornecedores").where(filtro)
+      console.log(dado)
+    }
+
+    //alterar fornecedores
+    export async function alterarFornecedores(conexao, ondeAlt, oQueAlt){
+      await conexao("fornecedores").where(ondeAlt).update(oQueAlt)
+      console.log("Fornecedor alterado com sucesso")
+    }
+
+    //deletar fornecedores
+    export async function excluirFornecedores(conexao, filtro){
+      await conexao("forecedores").where(filtro).del()
+      console.log("Fornecedor deletado")
+    }
 
 //created table products
 export async function criarTabelaProduto(conexao) {
@@ -105,6 +127,30 @@ export async function criarTabelaProduto(conexao) {
   console.log("Tabela produtos criada.")
 }
 
+    //inserir produto
+    export async function inserirProduto(conexao, inserir){
+      await conexao("produtos").insert(inserir)
+      console.log("Produto inserido")
+    }
+
+    //consultar produto
+    export async function consultarProduto(conexao, filtro){
+      const dado = await conexao.select().from("produtos").where(filtro)
+      console.log(dado)
+    } 
+
+    //alterar produto
+    export async function alterarProduto(conexao, ondeAlt, oQueAlt){
+      await conexao("produtos").where(ondeAlt).update(oQueAlt)
+      console.log("Produto alterado")
+    }
+
+    //exluir produto
+    export async function excluirProduto(conexao, filtro){
+      await conexao("produtos").where(filtro).del()
+      console.log("Produto exluido")
+    }
+
 //created table user
 export async function criarTabelaUsuarios(conexao) {
   await conexao.schema.createTable("usuarios", table =>{
@@ -119,6 +165,30 @@ export async function criarTabelaUsuarios(conexao) {
 
   console.log("Tabela usuário criada.")
 }
+
+    //inserir usuario
+    export async function inserirUsuario(conexao, inserir){
+      await conexao("usuarios").insert(inserir)
+      console.log("Usuario inserido")
+    }
+
+    //consultar usuario
+    export async function consultarUsuario(conexao, filtro){
+      const dado = await conexao.select().from("usuarios").where(filtro)
+      console.log(dado)
+    }
+
+    //alterar usuario
+    export async function alterarUsuario(conexao, ondeAlt, oQueAlt){
+      await conexao("usuarios").where(ondeAlt).update(oQueAlt)
+      console.log("Usuario alterado")
+    }
+
+    //exluir usuario
+    export async function excluirUsuario(conexao, filtro){
+      await conexao("ususarios").where(filtro).del()
+      console.log("usuario deletado")
+    }
 
 //created table sales
 export async function criarTabelaVendas(conexao){
@@ -138,5 +208,28 @@ export async function criarTabelaVendas(conexao){
   })
 
   console.log("tabela vendas criada.")
-
 }
+
+    //inserir vendas
+    export async function inserirVenda(conexao, inserir){
+      await conexao("vendas").insert(inserir)
+      console.log("Venda inserir")
+    }
+
+    //consultar vendas
+    export async function consultarVenda(conexao, filtro){
+      const dado = await conexao.select().from("vendas").where(filtro)
+      console.log(dado)
+    }
+
+    // atualizar vendas
+    export async function alterarVenda(conexao, ondeAlt, oQueAlt){
+      await conexao("vendas").where(ondeAlt).update(oQueAlt)
+      console.log("Venda atualizada")
+    }
+
+    //excluir venda
+    export async function excluirVenda(conexao, filtro){
+      await conexao("vendas").where(filtro).del()
+      console.log("Venda excluida")
+    }

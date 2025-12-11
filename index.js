@@ -1,6 +1,12 @@
 import knex from "knex";
 import knexfile from "./knexfile.js";
-import { criarTabelaProduto, criarTabelaClientes, criarTabelaFornecedores, criarTabelaFuncionarios, criarTabelaUsuarios, criarTabelaVendas, inserirFunc, consultarFunc, alterarFunc, excluirFunc } from "./funcoes.js";
+import { criarTabelaProduto, criarTabelaClientes, criarTabelaFornecedores, criarTabelaFuncionarios, criarTabelaUsuarios, criarTabelaVendas, 
+  inserirFunc, consultarFunc, alterarFunc, excluirFunc,
+  inserirCliente, consultarCliente, alterarCliente, excluirCliente,
+inserirForncedores, consultarForncedores, alterarFornecedores, excluirFornecedores,
+inserirProduto, consultarProduto, alterarProduto, excluirProduto,
+inserirUsuario, consultarUsuario, alterarUsuario, excluirUsuario,
+inserirVenda, consultarVenda, alterarVenda, excluirVenda } from "./funcoes.js";
 
 const conexao = knex(knexfile);
 
