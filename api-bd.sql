@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 09/12/2025 às 15:33
+-- Tempo de geração: 12/12/2025 às 13:50
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -35,6 +35,19 @@ CREATE TABLE `clientes` (
   `cpf` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Despejando dados para a tabela `clientes`
+--
+
+INSERT INTO `clientes` (`codCli`, `nome`, `lograduro`, `numero`, `cpf`) VALUES
+(1, 'João Silva', 'Rua das Flores', 120, 2147483647),
+(2, 'Maria Oliveira', 'Avenida Brasil', 450, 2147483647),
+(3, 'Carlos Pereira', 'Rua Central', 89, 2147483647),
+(4, 'Ana Souza', 'Travessa Azul', 33, 2147483647),
+(5, 'João Silva', 'Rua das Flores', 120, 2147483647),
+(6, 'Alan Pererira', 'Avenida Brasil', 450, 2147483647),
+(7, 'Carlos Pereira', 'Rua Central', 89, 2147483647);
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +61,16 @@ CREATE TABLE `fornecedores` (
   `contato` int(11) DEFAULT NULL,
   `cnpj` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `fornecedores`
+--
+
+INSERT INTO `fornecedores` (`codFornce`, `nome`, `logradouro`, `contato`, `cnpj`) VALUES
+(1, 'Alimentos Brasil Ltda', 'Rua das Indústrias, 500', 2147483647, 2147483647),
+(2, 'Comercial Vitória', 'Avenida Central, 210', 2147483647, 2147483647),
+(3, 'Distrbuidora Sol das Nascentes', 'Rua dos Comerciantes, 45', 2147483647, 2147483647),
+(4, 'Tech Supplies', 'Avenida Tecnológica, 900', 2147483647, 2147483647);
 
 -- --------------------------------------------------------
 
@@ -70,7 +93,8 @@ CREATE TABLE `funcionarios` (
 
 INSERT INTO `funcionarios` (`codFunc`, `nome`, `email`, `dataNascimento`, `dataInicio`, `cpf`) VALUES
 (1, 'Carla Souza', 'carla.souza@gmail.com', '1988-04-20', '2024-03-15', 2147483647),
-(2, 'Laercio Silva', 'carla.souza@gmail.com', '1988-04-20', '2024-03-15', 2147483647);
+(2, 'Laercio Silva', 'carla.souza@gmail.com', '1988-04-20', '2024-03-15', 2147483647),
+(4, 'Carla Souza 4', 'carla.souza@gmail.com', '1988-04-20', '2024-03-15', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -87,6 +111,17 @@ CREATE TABLE `produtos` (
   `codFornce` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Despejando dados para a tabela `produtos`
+--
+
+INSERT INTO `produtos` (`codProd`, `nome`, `price`, `date`, `bio`, `codFornce`) VALUES
+(1, 'Boné Aba Reta Urban', 59.90, '2025-02-13', 'Boné com design urbano, perfeito para o dia a dia.', 2),
+(2, 'Moletom Oversized Black', 199.00, '2025-02-14', 'Moletom confortável, tecido premium, estilo oversized.', 3),
+(3, 'VideoGame', 149.50, '2025-02-15', 'Calça cargo com múltiplos bolsos e tecido resistente.', 3),
+(4, 'Boné Aba Reta Urban', 59.90, '2025-02-13', 'Boné com design urbano, perfeito para o dia a dia.', 2),
+(5, 'Moletom Oversized Black', 199.00, '2025-02-14', 'Moletom confortável, tecido premium, estilo oversized.', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -101,6 +136,14 @@ CREATE TABLE `usuarios` (
   `cpf` int(11) DEFAULT NULL,
   `codFunc` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`codUsu`, `nome`, `email`, `dataNascimento`, `cpf`, `codFunc`) VALUES
+(1, 'Eduardo Silva', 'eduardo.silva@example.com', '2002-07-15', 2147483647, 1),
+(3, 'Eduardo Silva', 'eduardo.silva@example.com', '2002-07-15', 2147483647, 1);
 
 -- --------------------------------------------------------
 
@@ -119,6 +162,17 @@ CREATE TABLE `vendas` (
   `codFornce` int(10) UNSIGNED NOT NULL,
   `codCli` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Despejando dados para a tabela `vendas`
+--
+
+INSERT INTO `vendas` (`codVenda`, `nome`, `vendedor`, `cliente`, `forncedor`, `price`, `codProd`, `codFornce`, `codCli`) VALUES
+(1, 'Venda #002', 'Marcos Santos', 'Pedro Reis', 'Fornecedor XYZ', 159, 2, 1, 2),
+(2, 'Jonas Carvalho', 'João Carvalho', 'Bruna Castro', 'Fornecedor Alpha', 449, 3, 2, 3),
+(3, 'Venda #004', 'Carla Borges', 'Felipe da Luz', 'Fornecedor Beta', 89, 1, 3, 2),
+(4, 'Venda #002', 'Marcos Santos', 'Pedro Reis', 'Fornecedor XYZ', 159, 2, 1, 2),
+(6, 'Venda #004', 'Carla Borges', 'Felipe da Luz', 'Fornecedor Beta', 89, 1, 3, 2);
 
 --
 -- Índices para tabelas despejadas
@@ -173,37 +227,37 @@ ALTER TABLE `vendas`
 -- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `codCli` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `codCli` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
-  MODIFY `codFornce` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `codFornce` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `funcionarios`
 --
 ALTER TABLE `funcionarios`
-  MODIFY `codFunc` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `codFunc` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `codProd` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `codProd` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `codUsu` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `codUsu` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `vendas`
 --
 ALTER TABLE `vendas`
-  MODIFY `codVenda` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `codVenda` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restrições para tabelas despejadas
