@@ -23,6 +23,7 @@ export async function criarTabelaFuncionarios(conexao) {
       const dado = await conexao.select().from("funcionarios").where(filtro)
 
       console.log(dado)
+      // return dado
     }
 
     //alterar funcionarios
@@ -186,7 +187,7 @@ export async function criarTabelaUsuarios(conexao) {
 
     //exluir usuario
     export async function excluirUsuario(conexao, filtro){
-      await conexao("ususarios").where(filtro).del()
+      await conexao("usuarios").where(filtro).del()
       console.log("usuario deletado")
     }
 
