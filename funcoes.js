@@ -22,8 +22,8 @@ export async function criarTabelaFuncionarios(conexao) {
     export async function consultarFunc(conexao, filtro){
       const dado = await conexao.select().from("funcionarios").where(filtro)
 
-      console.log(dado)
-      // return dado
+      // console.log(dado)
+      return dado
     }
 
     //alterar funcionarios
@@ -61,7 +61,8 @@ export async function criarTabelaClientes(conexao){
     //consultar clientes
     export async function consultarCliente(conexao, filtro){
       const dado = await conexao.select().from("clientes").where(filtro)
-      console.log(dado)
+      // console.log(dado)
+      return dado;
     }
 
     //alterar clientes

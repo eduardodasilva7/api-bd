@@ -90,4 +90,4 @@ const conexao = knex(knexfile);
 
 
 
-conexao.destroy;
+conexao.destroy();
